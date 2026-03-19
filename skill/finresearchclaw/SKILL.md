@@ -1,7 +1,6 @@
 ---
 name: finresearchclaw
-description: >-
-  Finance, accounting, and investment research automation via the FinResearchClaw repo. Use when asked to run autonomous finance research workflows such as event studies, factor-model research, accounting regressions, forecast-error analysis, valuation research, or investment research pipelines. Prefer execution in this order: (1) Codex/ACP Codex when available, (2) Claude Code/ACP Claude, (3) direct API/config mode only as a fallback.
+description: "Finance, accounting, and investment research automation via the FinResearchClaw repo. Use when asked to run autonomous finance research workflows such as event studies, factor-model research, accounting regressions, forecast-error analysis, valuation research, or investment research pipelines. Prefer execution in this order: (1) Codex/ACP Codex when available, (2) Claude Code/ACP Claude, (3) direct API/config mode only as a fallback."
 ---
 
 # FinResearchClaw
