@@ -1,5 +1,3 @@
----
-
 ## 🔥 News
 - **[03/19/2026]** FinResearchClaw launches as a finance/accounting/investment-focused fork with finance-aware domain detection, prompt overlays, local dataset helpers, and starter templates for event-study and factor-model workflows.
 - **Upstream lineage:** FinResearchClaw is built on top of AutoResearchClaw / ResearchClaw and keeps the autonomous 23-stage pipeline while specializing the default experience for finance work.
