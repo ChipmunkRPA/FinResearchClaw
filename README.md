@@ -2,7 +2,7 @@
   <img src="image/logo.png" width="700" alt="FinResearchClaw Logo">
 </p>
 
-<h2 align="center"><b>Chat an Idea. Get a Paper. Fully Autonomous & Self-Evolving.</b></h2>
+<h2 align="center"><b>Finance, Accounting, and Investment Research — Autonomous, Opinionated, and Practical.</b></h2>
 
 
 
@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="image/framework_v2.png" width="100%" alt="AutoResearchClaw Framework">
+  <img src="image/framework_v2.png" width="100%" alt="FinResearchClaw Framework">
 </p>
 
 
@@ -47,10 +47,8 @@
 ---
 
 ## 🔥 News
-- **[03/18/2026]** [v0.3.1](https://github.com/aiming-lab/AutoResearchClaw/releases/tag/v0.3.1) — **OpenCode Beast Mode + Community Contributions** — New "Beast Mode" routes complex code generation to [OpenCode](https://github.com/anomalyco/opencode) with automatic complexity scoring and graceful fallback. Added Novita AI provider support, thread-safety hardening, improved LLM output parsing robustness, and 20+ bug fixes from community PRs and internal audit.
-- **[03/17/2026]** [v0.3.0](https://github.com/aiming-lab/AutoResearchClaw/releases/tag/v0.3.0) — **MetaClaw Integration** — AutoResearchClaw now supports [MetaClaw](https://github.com/aiming-lab/MetaClaw) cross-run learning: pipeline failures → structured lessons → reusable skills, injected into all 23 stages. **+18.3%** robustness in controlled experiments. Opt-in (`metaclaw_bridge.enabled: true`), fully backward-compatible. See [Integration Guide](#-metaclaw-integration).
-- **[03/16/2026]** [v0.2.0](https://github.com/aiming-lab/AutoResearchClaw/releases/tag/v0.2.0) — Three multi-agent subsystems (CodeAgent, BenchmarkAgent, FigureAgent), hardened Docker sandbox with network-policy-aware execution, 4-round paper quality audit (AI-slop detection, 7-dim review scoring, NeurIPS checklist), and 15+ bug fixes from production runs.
-- **[03/15/2026]** [v0.1.0](https://github.com/aiming-lab/AutoResearchClaw/releases/tag/v0.1.0) — We release AutoResearchClaw: a fully autonomous 23-stage research pipeline that turns a single research idea into a conference-ready paper. No human intervention required.
+- **[03/19/2026]** FinResearchClaw launches as a finance/accounting/investment-focused fork with finance-aware domain detection, prompt overlays, local dataset helpers, and starter templates for event-study and factor-model workflows.
+- **Upstream lineage:** FinResearchClaw is built on top of AutoResearchClaw / ResearchClaw and keeps the autonomous 23-stage pipeline while specializing the default experience for finance work.
 
 ---
 
@@ -65,9 +63,9 @@ pip install -e . && researchclaw setup && researchclaw init && researchclaw run 
 
 ## 🤔 What Is This?
 
-**You think it. AutoResearchClaw writes it.**
+**You think it. FinResearchClaw researches it.**
 
-Drop a research topic — get back a full academic paper with real literature from OpenAlex, Semantic Scholar & arXiv, hardware-aware sandbox experiments (GPU/MPS/CPU auto-detected), statistical analysis, multi-agent peer review, and conference-ready LaTeX targeting NeurIPS/ICML/ICLR. No babysitting. No copy-pasting. No hallucinated references.
+Drop a finance, accounting, or investment research topic — get back a paper draft, experiment plans, sandbox code, charts, and evidence-oriented writeups tuned for event studies, factor research, accounting regressions, forecast-error work, and related workflows. It still inherits the broader ResearchClaw engine underneath, but the opinionated surface area is now finance-first.
 
 <table>
 <tr><td>📄</td><td><code>paper_draft.md</code></td><td>Full academic paper (Introduction, Related Work, Method, Experiments, Results, Conclusion)</td></tr>
@@ -89,8 +87,8 @@ The pipeline runs **end-to-end without human intervention**. When experiments fa
 
 ```bash
 # 1. Clone & install
-git clone https://github.com/aiming-lab/AutoResearchClaw.git
-cd AutoResearchClaw
+git clone https://github.com/ChipmunkRPA/FinResearchClaw.git
+cd FinResearchClaw
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 
@@ -186,7 +184,7 @@ Extra docs and ready-to-run examples:
 <table>
 <tr>
 
-**AutoResearchClaw is an [OpenClaw](https://github.com/openclaw/openclaw)-compatible service.** Install it in OpenClaw and launch autonomous research with a single message — or use it standalone via CLI, Claude Code, or any AI coding assistant.
+**FinResearchClaw is an [OpenClaw](https://github.com/openclaw/openclaw)-compatible service.** Install it in OpenClaw and launch finance-oriented autonomous research with a single message — or use it standalone via CLI, Claude Code, or any AI coding assistant.
 
 </tr>
 </table>
@@ -218,7 +216,7 @@ If you already use [OpenClaw](https://github.com/openclaw/openclaw) as your AI a
 
 ### 🔌 OpenClaw Bridge (Advanced)
 
-For deeper integration, AutoResearchClaw includes a **bridge adapter system** with 6 optional capabilities:
+For deeper integration, FinResearchClaw includes a **bridge adapter system** with 6 optional capabilities:
 
 ```yaml
 # config.arc.yaml
@@ -235,7 +233,7 @@ Each flag activates a typed adapter protocol. When OpenClaw provides these capab
 
 ### ACP (Agent Client Protocol)
 
-AutoResearchClaw can use **any ACP-compatible coding agent** as its LLM backend — no API keys required. The agent communicates via [acpx](https://github.com/openclaw/acpx), maintaining a single persistent session across all 23 pipeline stages.
+FinResearchClaw can use **any ACP-compatible coding agent** as its LLM backend — no API keys required. The agent communicates via [acpx](https://github.com/openclaw/acpx), maintaining a single persistent session across all 23 pipeline stages.
 
 | Agent | Command | Notes |
 |-------|---------|-------|
@@ -338,9 +336,9 @@ Phase D: Experiment Design         Phase H: Finalization
 
 ## 🧠 MetaClaw Integration
 
-**AutoResearchClaw + [MetaClaw](https://github.com/aiming-lab/MetaClaw) = A pipeline that learns from every run.**
+**FinResearchClaw + [MetaClaw](https://github.com/aiming-lab/MetaClaw) = A finance-focused pipeline that learns from every run.**
 
-MetaClaw adds **cross-run knowledge transfer** to AutoResearchClaw. When enabled, the pipeline automatically captures lessons from failures and warnings, converts them into reusable skills, and injects those skills into all 23 pipeline stages on subsequent runs — so the same mistakes are never repeated.
+MetaClaw adds **cross-run knowledge transfer** to FinResearchClaw. When enabled, the pipeline automatically captures lessons from failures and warnings, converts them into reusable skills, and injects those skills into all 23 pipeline stages on subsequent runs — so the same mistakes are never repeated.
 
 ### How It Works
 
@@ -551,7 +549,9 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ## 📌 Citation
 
-If you find AutoResearchClaw useful, please cite:
+If you find FinResearchClaw useful, please cite the upstream AutoResearchClaw project and this finance-focused fork appropriately.
+
+> FinResearchClaw currently ships the upstream citation block below while the fork establishes its own citation metadata.
 
 ```bibtex
 @misc{liu2026autoresearchclaw,
@@ -564,6 +564,5 @@ If you find AutoResearchClaw useful, please cite:
 ```
 
 <p align="center">
-  <sub>Built with 🦞 by the AutoResearchClaw team</sub>
+  <sub>Built with 🦞 on top of ResearchClaw, adapted as FinResearchClaw</sub>
 </p>
-/p>
