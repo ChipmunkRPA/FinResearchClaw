@@ -138,6 +138,7 @@ domain_map:
   biology_general: biology
   economics_empirical: economics
   economics_general: economics
+  finance_accounting_investment: economics
   mathematics_numerical: math
   mathematics_optimization: math
   mathematics_general: math

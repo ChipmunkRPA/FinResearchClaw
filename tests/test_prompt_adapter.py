@@ -172,6 +172,25 @@ class TestEconomicsAdapter:
         assert "progressive" in blocks.experiment_design_context.lower()
 
 
+class TestFinanceAdapter:
+    def test_finance_adapter_loaded(self):
+        profile = get_profile("finance_accounting_investment")
+        if profile is None:
+            pytest.skip("finance_accounting_investment profile not found")
+        adapter = get_adapter(profile)
+        assert not isinstance(adapter, MLPromptAdapter)
+
+    def test_finance_design_blocks(self):
+        profile = get_profile("finance_accounting_investment")
+        if profile is None:
+            pytest.skip("finance_accounting_investment profile not found")
+        adapter = get_adapter(profile)
+        blocks = adapter.get_experiment_design_blocks({})
+        ctx = blocks.experiment_design_context.lower()
+        assert "benchmark" in ctx
+        assert "look-ahead bias" in ctx
+
+
 # ---------------------------------------------------------------------------
 # get_adapter dispatch tests
 # ---------------------------------------------------------------------------

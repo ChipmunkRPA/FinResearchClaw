@@ -1,7 +1,7 @@
 [project]
-name = "researchclaw"
-version = "0.3.1"
-description = "ResearchClaw — Autonomous Research Pipeline. Turn any research idea into a paper."
+name = "finresearchclaw"
+version = "0.1.0"
+description = "FinResearchClaw — Finance, accounting, and investment research automation built on ResearchClaw."
 requires-python = ">=3.11"
 dependencies = [
     "pyyaml>=6.0",

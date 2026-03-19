@@ -1,0 +1,53 @@
+objectives:
+  - Estimate abnormal returns around earnings announcements
+  - Compare benchmark expected-return models across event windows
+  - Test robustness to alternative windows and subsamples
+
+datasets:
+  - name: local_event_panel
+    source: local_csv_or_parquet
+    description: Firm-date panel with returns, event dates, and benchmark factors
+    required_columns:
+      - date
+      - firm_id
+      - ret
+      - event_date
+      - mkt_rf
+      - rf
+
+baselines:
+  - name: capm_expected_return
+    description: CAPM-based abnormal return benchmark
+  - name: ff3_expected_return
+    description: Fama-French 3-factor expected return benchmark
+
+proposed_methods:
+  - name: event_window_model
+    description: Event-study specification with configurable windows and subsample analysis
+
+ablations:
+  - name: narrow_window_only
+    description: Restrict to [-1,+1] event window only
+  - name: no_subsample_controls
+    description: Remove industry/size/time subgroup robustness checks
+
+metrics:
+  primary_metric:
+    direction: maximize
+    description: Economic and statistical signal quality from cumulative abnormal returns
+  car_t_stat:
+    direction: maximize
+  window_stability:
+    direction: maximize
+  placebo_rejection_rate:
+    direction: minimize
+
+risks:
+  - look-ahead bias in benchmark construction
+  - survivorship bias from sample filtering
+  - event-date alignment errors
+  - overlapping windows inflating significance
+
+compute_budget:
+  seeds: 5
+  notes: CPU-friendly; prioritize robustness windows and placebo tests over model complexity

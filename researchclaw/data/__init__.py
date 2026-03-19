@@ -10,6 +10,13 @@ import yaml
 
 logger = logging.getLogger(__name__)
 
+from researchclaw.data.finance_local import (
+    finance_schema_summary,
+    infer_finance_dataset_kind,
+    read_tabular_preview,
+    recommended_research_conventions,
+)
+
 # ---------------------------------------------------------------------------
 # Framework documentation
 # ---------------------------------------------------------------------------

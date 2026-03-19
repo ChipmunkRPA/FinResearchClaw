@@ -75,6 +75,7 @@ class TestProfileLoading:
             "chemistry_molprop",
             "biology_singlecell",
             "economics_empirical",
+            "finance_accounting_investment",
             "security_detection",
             "robotics_control",
         ]:
@@ -126,6 +127,11 @@ class TestKeywordDetection:
     def test_economics_keywords(self):
         assert _keyword_detect("panel data regression with fixed effects") == "economics_empirical"
         assert _keyword_detect("instrumental variable causal inference") == "economics_empirical"
+
+    def test_finance_keywords(self):
+        assert _keyword_detect("event study of abnormal returns around earnings announcements") == "finance_accounting_investment"
+        assert _keyword_detect("accrual quality and analyst forecast error research") == "finance_accounting_investment"
+        assert _keyword_detect("Fama-French factor model for portfolio alpha") == "finance_accounting_investment"
 
     def test_math_keywords(self):
         assert _keyword_detect("Runge-Kutta ODE solver convergence") == "mathematics_numerical"
@@ -197,7 +203,7 @@ class TestIsMLDomain:
             assert is_ml_domain(profile)
 
     def test_non_ml_domains(self):
-        for domain_id in ["physics_simulation", "chemistry_qm", "economics_empirical"]:
+        for domain_id in ["physics_simulation", "chemistry_qm", "economics_empirical", "finance_accounting_investment"]:
             profile = get_profile(domain_id)
             assert profile is not None
             assert not is_ml_domain(profile)
@@ -294,6 +300,10 @@ class TestDetectionAccuracy:
         ("Panel data regression with fixed effects", "economics_empirical"),
         ("Instrumental variable estimation", "economics_empirical"),
         ("Causal inference with difference-in-differences", "economics_empirical"),
+        # Finance / accounting / investment topics
+        ("Event study of abnormal returns around earnings announcements", "finance_accounting_investment"),
+        ("Accrual quality and analyst forecast error", "finance_accounting_investment"),
+        ("Fama-French factor model for portfolio alpha", "finance_accounting_investment"),
         # Math topics
         ("Runge-Kutta ODE solver convergence analysis", "mathematics_numerical"),
         ("Numerical quadrature comparison", "mathematics_numerical"),

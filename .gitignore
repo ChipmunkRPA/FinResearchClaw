@@ -79,6 +79,7 @@ cli_pause
 重试一次
 
 .venv_arc/
+.venv_autoresearchclaw/
 /config.arc.yaml
 
 config_*.yaml

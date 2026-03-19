@@ -82,6 +82,15 @@ class TestCrossDomainDetection:
         blocks = adapter.get_experiment_design_blocks({})
         assert "progressive" in blocks.experiment_design_context.lower()
 
+    def test_finance_full_pipeline(self):
+        """Finance/accounting/investment: detect → adapter → bias-aware guidance."""
+        profile = detect_domain("event study of abnormal returns around earnings announcements")
+        assert profile.domain_id == "finance_accounting_investment"
+
+        adapter = get_adapter(profile)
+        blocks = adapter.get_experiment_design_blocks({})
+        assert "look-ahead bias" in blocks.experiment_design_context.lower()
+
     def test_chemistry_full_pipeline(self):
         """Chemistry: detect → adapter → PySCF guidance."""
         profile = detect_domain("DFT calculation with PySCF for molecular energies")
@@ -400,6 +409,7 @@ class TestDockerProfileMapping:
         core_domains = [
             "ml_vision", "ml_nlp", "ml_rl", "physics_simulation",
             "physics_pde", "chemistry_qm", "economics_empirical",
+            "finance_accounting_investment",
             "mathematics_numerical",
         ]
         for d in core_domains:

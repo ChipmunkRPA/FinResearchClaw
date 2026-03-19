@@ -1,0 +1,36 @@
+project:
+  name: "earnings-event-study"
+  mode: "full-auto"
+
+research:
+  topic: "Event study of abnormal returns around earnings announcements"
+  domains:
+    - "finance"
+    - "accounting"
+  daily_paper_count: 12
+  quality_threshold: 4.0
+
+runtime:
+  timezone: "America/New_York"
+  max_parallel_tasks: 3
+  approval_timeout_hours: 12
+  retry_limit: 2
+
+llm:
+  provider: "openai-compatible"
+  base_url: "https://api.openai.com/v1"
+  api_key_env: "OPENAI_API_KEY"
+  primary_model: "gpt-4o"
+  fallback_models:
+    - "gpt-4o-mini"
+
+experiment:
+  mode: "sandbox"
+  time_budget_sec: 300
+  max_iterations: 8
+  metric_key: "primary_metric"
+  metric_direction: "maximize"
+  sandbox:
+    python_path: ".venv/bin/python3"
+    gpu_required: false
+    max_memory_mb: 4096

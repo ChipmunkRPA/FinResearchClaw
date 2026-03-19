@@ -37,6 +37,49 @@ from researchclaw.experiment.validator import (
 logger = logging.getLogger(__name__)
 
 
+def _get_domain_prompt_blocks(topic: str) -> tuple[Any | None, Any | None]:
+    """Best-effort helper to fetch detected domain profile + prompt blocks."""
+    try:
+        from researchclaw.domains.detector import detect_domain as _detect_domain_profile, is_ml_domain as _is_ml_domain
+        from researchclaw.domains.prompt_adapter import get_adapter as _get_adapter
+
+        _profile = _detect_domain_profile(topic=topic)
+        if _is_ml_domain(_profile):
+            return _profile, None
+        return _profile, _get_adapter(_profile)
+    except Exception:  # noqa: BLE001
+        logger.debug("Domain prompt block lookup skipped", exc_info=True)
+        return None, None
+
+
+def _domain_paper_guidance(profile: Any | None) -> str:
+    """Render a lightweight paper-writing overlay for non-ML domains."""
+    if profile is None:
+        return ""
+    parts: list[str] = [
+        f"## Domain Paper Guidance\nThis paper is in the domain: {getattr(profile, 'display_name', 'Unknown')}.",
+    ]
+    baselines = getattr(profile, "standard_baselines", None) or []
+    figures = getattr(profile, "figure_types", None) or []
+    outputs = getattr(profile, "output_formats", None) or []
+    eval_protocol = getattr(profile, "evaluation_protocol", "") or ""
+    if baselines:
+        parts.append("- Prefer accepted domain benchmarks/baselines before novel variants: " + ", ".join(baselines[:8]))
+    if eval_protocol:
+        parts.append("- Evaluation protocol expectation: " + eval_protocol)
+    if figures:
+        parts.append("- Favor domain-appropriate visuals: " + ", ".join(figures[:6]))
+    if outputs:
+        parts.append("- Favor domain-appropriate tables/outputs: " + ", ".join(outputs[:6]))
+    if getattr(profile, "domain_id", "") == "finance_accounting_investment":
+        parts.extend([
+            "- Explicitly discuss look-ahead bias, survivorship bias, leakage, and implementation frictions where relevant.",
+            "- Separate statistical significance from economic significance.",
+            "- Prefer benchmark factor models, event-window robustness, and subsample checks before stronger claims.",
+        ])
+    return "\n".join(parts) + "\n"
+
+
 # ---------------------------------------------------------------------------
 # Domain detection — maps research topic to academic domain & venue context
 # ---------------------------------------------------------------------------
@@ -2676,6 +2719,23 @@ def _execute_experiment_design(
             _dg_block = _pm.block("dataset_guidance")
         except (KeyError, Exception):  # noqa: BLE001
             _dg_block = ""
+        _exp_design_extra = ""
+        _domain_profile, _domain_adapter = _get_domain_prompt_blocks(config.research.topic)
+        if _domain_adapter is not None:
+            try:
+                _domain_blocks = _domain_adapter.get_experiment_design_blocks({})
+                if _domain_blocks.experiment_design_context:
+                    _exp_design_extra += (
+                        "\n## Domain-Specific Experiment Design Context\n"
+                        + _domain_blocks.experiment_design_context + "\n"
+                    )
+                if _domain_blocks.statistical_test_guidance:
+                    _exp_design_extra += (
+                        "\n## Domain-Specific Statistical Guidance\n"
+                        + _domain_blocks.statistical_test_guidance + "\n"
+                    )
+            except Exception:  # noqa: BLE001
+                logger.debug("Experiment-design domain injection skipped", exc_info=True)
         # I-08: Inject RL step guidance for RL topics
         _rl_kws = ("reinforcement learning", "ppo", "sac", "td3", "ddpg",
                     "dqn", "mujoco", "continuous control", "actor-critic",
@@ -2701,7 +2761,7 @@ def _execute_experiment_design(
             evolution_overlay=_overlay,
             preamble=preamble,
             hypotheses=hypotheses,
-            dataset_guidance=_dg_block,
+            dataset_guidance=_dg_block + _exp_design_extra,
             time_budget_sec=config.experiment.time_budget_sec,
             metric_key=config.experiment.metric_key,
             metric_direction=config.experiment.metric_direction,
@@ -5439,6 +5499,23 @@ def _execute_result_analysis(
             "mean the ablation design is broken and the comparison is meaningless.\n"
         )
 
+    _domain_profile, _domain_adapter = _get_domain_prompt_blocks(config.research.topic)
+    if _domain_adapter is not None:
+        try:
+            _analysis_blocks = _domain_adapter.get_result_analysis_blocks({})
+            if _analysis_blocks.result_analysis_hints:
+                data_context += (
+                    "\n\n## Domain-Specific Analysis Guidance\n"
+                    + _analysis_blocks.result_analysis_hints
+                )
+            if _analysis_blocks.statistical_test_guidance:
+                data_context += (
+                    "\n\n## Domain-Specific Statistical Guidance\n"
+                    + _analysis_blocks.statistical_test_guidance
+                )
+        except Exception:  # noqa: BLE001
+            logger.debug("Result-analysis domain injection skipped", exc_info=True)
+
     if llm is not None:
         _pm = prompts or PromptManager()
         from researchclaw.prompts import DEBATE_ROLES_ANALYSIS  # noqa: PLC0415
@@ -5785,6 +5862,8 @@ def _execute_paper_outline(
 
     if llm is not None:
         _pm = prompts or PromptManager()
+        _domain_profile, _domain_adapter = _get_domain_prompt_blocks(config.research.topic)
+        _domain_guidance = _domain_paper_guidance(_domain_profile)
         # IMP-20: Pass academic style guide block for outline stage
         try:
             _asg = _pm.block("academic_style_guide")
@@ -5795,7 +5874,7 @@ def _execute_paper_outline(
             "paper_outline",
             evolution_overlay=_overlay,
             preamble=preamble,
-            topic_constraint=_pm.block("topic_constraint", topic=config.research.topic),
+            topic_constraint=_pm.block("topic_constraint", topic=config.research.topic) + "\n" + _domain_guidance,
             feedback=feedback,
             analysis=analysis,
             decision=decision,
@@ -7518,7 +7597,9 @@ def _execute_paper_draft(
 
     if llm is not None:
         _pm = prompts or PromptManager()
+        _domain_profile, _domain_adapter = _get_domain_prompt_blocks(config.research.topic)
         topic_constraint = _pm.block("topic_constraint", topic=config.research.topic)
+        topic_constraint += "\n" + _domain_paper_guidance(_domain_profile)
 
         # --- Section-by-section writing (3 calls) for conference-grade depth ---
         draft = _write_paper_sections(
@@ -7701,13 +7782,14 @@ def _execute_peer_review(
 
     if llm is not None:
         _pm = prompts or PromptManager()
+        _domain_profile, _domain_adapter = _get_domain_prompt_blocks(config.research.topic)
         _overlay = _get_evolution_overlay(run_dir, "peer_review")
         sp = _pm.for_stage(
             "peer_review",
             evolution_overlay=_overlay,
             topic=config.research.topic,
             draft=draft,
-            experiment_evidence=experiment_evidence,
+            experiment_evidence=experiment_evidence + "\n\n" + _domain_paper_guidance(_domain_profile),
         )
         _review_user = sp.user + _quality_suffix
         resp = _chat_with_prompt(
@@ -7769,6 +7851,7 @@ def _execute_paper_revision(
 
     if llm is not None:
         _pm = prompts or PromptManager()
+        _domain_profile, _domain_adapter = _get_domain_prompt_blocks(config.research.topic)
         try:
             _ws_revision = _pm.block("writing_structure")
         except (KeyError, Exception):  # noqa: BLE001
@@ -7801,10 +7884,10 @@ def _execute_paper_revision(
         sp = _pm.for_stage(
             "paper_revision",
             evolution_overlay=_overlay,
-            topic_constraint=_pm.block("topic_constraint", topic=config.research.topic),
+            topic_constraint=_pm.block("topic_constraint", topic=config.research.topic) + "\n" + _domain_paper_guidance(_domain_profile),
             writing_structure=_ws_revision,
             draft=draft,
-            reviews=_quality_prefix + reviews + data_integrity_revision,
+            reviews=_quality_prefix + reviews + data_integrity_revision + "\n\n" + _domain_paper_guidance(_domain_profile),
             **_rev_blocks,
         )
         # R10-Fix2: Ensure max_tokens is sufficient for full paper revision

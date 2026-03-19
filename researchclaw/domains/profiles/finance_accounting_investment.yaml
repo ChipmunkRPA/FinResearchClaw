@@ -1,0 +1,123 @@
+domain_id: finance_accounting_investment
+display_name: Finance, Accounting, and Investment Research
+parent_domain: finance
+
+experiment_paradigm: progressive_spec
+condition_terminology:
+  baseline: "benchmark model"
+  proposed: "research specification"
+  variant: "robustness check"
+  input: "issuer / firm / portfolio sample"
+  metric: "alpha, forecast error, or explanatory power"
+
+typical_file_structure:
+  config.py: "Research design, sample filters, and variable definitions"
+  data_prep.py: "Statement data cleaning, factor construction, and panel setup"
+  models.py: "Accounting ratios, forecasting specs, event-study or asset-pricing models"
+  robustness.py: "Sensitivity analysis, placebo tests, and specification checks"
+  main.py: "Entry point: load/generate data → estimate → analyze → tables"
+
+entry_point: main.py
+
+core_libraries:
+  - pandas
+  - numpy
+  - scipy
+  - statsmodels
+  - linearmodels
+
+docker_image: researchclaw/sandbox-economics:latest
+gpu_required: false
+
+pip_packages:
+  - pandas
+  - numpy
+  - scipy
+  - statsmodels
+  - linearmodels
+  - matplotlib
+
+metric_types:
+  - table
+  - scalar
+  - structured
+
+standard_baselines:
+  - CAPM
+  - Fama-French 3-factor
+  - Fama-French 5-factor
+  - analyst-consensus benchmark
+  - naive persistence forecast
+  - fixed effects panel regression
+
+evaluation_protocol: "Use progressive specifications: benchmark model → controls → fixed effects → robustness checks / event-study windows / factor extensions. Report coefficients, t-stats, alpha, information ratio, forecast error, R², and sample size as applicable."
+statistical_tests:
+  - robust_se
+  - cluster_se
+  - hausman_test
+  - newey_west
+  - placebo_test
+  - event_window_sensitivity
+
+output_formats:
+  - regression_table
+  - factor_table
+  - event_study_table
+  - latex_table
+
+figure_types:
+  - coefficient_plot
+  - cumulative_abnormal_return_plot
+  - factor_exposure_plot
+  - forecast_error_plot
+
+github_search_terms:
+  - finance event study python
+  - fama french regression python
+  - accounting accruals model python
+  - panel regression finance python
+
+paper_keywords:
+  - accounting quality
+  - accruals
+  - earnings management
+  - event study
+  - factor model
+  - asset pricing
+  - valuation
+  - portfolio construction
+  - analyst forecast
+  - financial statement analysis
+
+compute_budget_guidance: |
+  Finance/accounting experiments are usually CPU-friendly. Focus on:
+  - Multiple specifications and event windows rather than large model training
+  - Bootstrap or Newey-West inference where serial correlation matters
+  - Cross-sectional, panel, and portfolio-sort robustness checks
+
+dataset_guidance: |
+  Finance/accounting data guidance:
+  - Prefer generated or locally provided panel data if no external data is bundled
+  - Simulate realistic firm-level panels with statements, returns, factors, and event dates
+  - Include missingness, outliers, and industry/time fixed effects where relevant
+  - Typical tasks: accrual quality, earnings prediction, bankruptcy risk, event studies,
+    factor exposures, portfolio sorts, valuation error analysis
+  - Do NOT rely on live market downloads inside main.py
+
+code_generation_hints: |
+  Finance/accounting code requirements:
+  1. Build firm-month or firm-quarter panels with identifiers and dates
+  2. Implement benchmark models first (CAPM / FF factors / naive forecast / base regression)
+  3. Add accounting controls, fixed effects, or event windows progressively
+  4. Report domain metrics clearly:
+     - Accounting: forecast MAE/RMSE, abnormal accrual proxy, adjusted R²
+     - Investment: alpha, Sharpe/information ratio, hit rate, drawdown, turnover
+     - Event study: CAR/BHAR, t-stats, window sensitivity
+  5. Output structured JSON to results.json with table-ready summaries by specification
+
+result_analysis_hints: |
+  Finance/accounting result analysis:
+  - Distinguish statistical significance from economic significance
+  - Discuss coefficient magnitude in business terms, not only p-values
+  - Check robustness across windows, industries, size buckets, and time periods
+  - Flag survivorship bias, look-ahead bias, and leakage risks explicitly

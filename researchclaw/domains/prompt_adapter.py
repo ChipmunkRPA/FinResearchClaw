@@ -270,6 +270,11 @@ def _build_adapter_registry() -> dict[str, type[PromptAdapter]]:
     except ImportError:
         pass
     try:
+        from researchclaw.domains.adapters.finance import FinancePromptAdapter
+        registry["finance_"] = FinancePromptAdapter
+    except ImportError:
+        pass
+    try:
         from researchclaw.domains.adapters.biology import BiologyPromptAdapter
         registry["biology_"] = BiologyPromptAdapter
     except ImportError:

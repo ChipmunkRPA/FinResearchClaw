@@ -6,6 +6,14 @@ research:
   topic: "Your research topic here"
   domains:
     - "machine-learning"
+    # Finance/accounting/investment examples:
+    # - "finance"
+    # - "accounting"
+    # - "investment-research"
+    # Example topics that should auto-route to the finance domain layer:
+    # - "Event study of abnormal returns around earnings announcements"
+    # - "Accrual quality and analyst forecast error"
+    # - "Fama-French factor model for portfolio alpha"
   daily_paper_count: 10
   quality_threshold: 4.0
 

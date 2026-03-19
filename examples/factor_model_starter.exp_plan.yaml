@@ -1,0 +1,55 @@
+objectives:
+  - Evaluate whether a strategy delivers alpha beyond benchmark factors
+  - Compare CAPM, FF3, and FF5 benchmarks
+  - Test subsample and implementation robustness
+
+datasets:
+  - name: local_factor_panel
+    source: local_csv_or_parquet
+    description: Portfolio or firm-date panel with returns and benchmark factor columns
+    required_columns:
+      - date
+      - ret
+      - rf
+      - mkt_rf
+      - smb
+      - hml
+
+baselines:
+  - name: capm_model
+    description: CAPM regression benchmark
+  - name: ff3_model
+    description: Fama-French 3-factor benchmark
+  - name: ff5_model
+    description: Fama-French 5-factor benchmark
+
+proposed_methods:
+  - name: alpha_research_spec
+    description: Alpha specification with factor exposures, turnover checks, and rolling analysis
+
+ablations:
+  - name: static_loadings_only
+    description: Remove rolling or subsample analysis
+  - name: no_cost_adjustment
+    description: Exclude turnover or implementation-friction penalty
+
+metrics:
+  primary_metric:
+    direction: maximize
+    description: Net alpha after benchmark factor adjustment
+  alpha_t_stat:
+    direction: maximize
+  information_ratio:
+    direction: maximize
+  turnover_penalty:
+    direction: minimize
+
+risks:
+  - omitted benchmark factors
+  - unstable exposures across regimes
+  - overstated alpha without trading-friction assumptions
+  - look-ahead bias in portfolio formation
+
+compute_budget:
+  seeds: 5
+  notes: Focus on benchmark comparisons, rolling windows, and implementation realism

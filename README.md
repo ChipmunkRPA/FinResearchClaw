@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="image/logo.png" width="700" alt="AutoResearchClaw Logo">
+  <img src="image/logo.png" width="700" alt="FinResearchClaw Logo">
 </p>
 
 <h2 align="center"><b>Chat an Idea. Get a Paper. Fully Autonomous & Self-Evolving.</b></h2>
@@ -19,7 +19,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
   <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white" alt="Python 3.11+"></a>
   <a href="#testing"><img src="https://img.shields.io/badge/Tests-1634%20passed-brightgreen?logo=pytest&logoColor=white" alt="1633 Tests Passed"></a>
-  <a href="https://github.com/aiming-lab/AutoResearchClaw"><img src="https://img.shields.io/badge/GitHub-AutoResearchClaw-181717?logo=github" alt="GitHub"></a>
+  <a href="https://github.com/ChipmunkRPA/FinResearchClaw"><img src="https://img.shields.io/badge/GitHub-FinResearchClaw-181717?logo=github" alt="GitHub"></a>
   <a href="#openclaw-integration"><img src="https://img.shields.io/badge/OpenClaw-Compatible-ff4444?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==" alt="OpenClaw Compatible"></a>
   <a href="https://discord.gg/u4ksqW5P"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?logo=discord&logoColor=white" alt="Discord"></a>
 </p>
@@ -132,6 +132,40 @@ experiment:
 
 </details>
 
+<details>
+<summary>💹 Finance / accounting / investment example</summary>
+
+```yaml
+project:
+  name: "earnings-event-study"
+
+research:
+  topic: "Event study of abnormal returns around earnings announcements"
+  domains: ["finance", "accounting"]
+
+experiment:
+  mode: "sandbox"
+  metric_key: "primary_metric"
+  metric_direction: "maximize"
+```
+
+This topic now auto-detects the `finance_accounting_investment` domain and nudges the pipeline toward:
+- benchmark factor models first
+- event-window and robustness checks
+- look-ahead / survivorship / leakage warnings
+- finance-style outputs like alpha, CAR/BHAR, forecast error, and regression tables
+
+Extra docs and ready-to-run examples:
+- `docs/finance-research-guide.md`
+- `docs/finresearchclaw-release-notes.md`
+- `docs/finresearchclaw-fork-plan.md`
+- `examples/finance_event_study.config.yaml`
+- `examples/accounting_forecast_error.config.yaml`
+- `examples/finance_event_study.exp_plan.yaml`
+- `examples/factor_model_starter.exp_plan.yaml`
+
+</details>
+
 ---
 
 ## 🧠 What Makes It Different
@@ -143,6 +177,7 @@ experiment:
 | **🧬 Self-Learning** | Lessons extracted per run (decision rationale, runtime warnings, metric anomalies) with 30-day time-decay. Future runs learn from past mistakes. |
 | **📚 Knowledge Base** | Every run builds structured KB across 6 categories (decisions, experiments, findings, literature, questions, reviews). |
 | **🛡️ Sentinel Watchdog** | Background quality monitor: NaN/Inf detection, paper-evidence consistency, citation relevance scoring, anti-fabrication guard. |
+| **💹 Finance / Accounting Research** | Detects finance-style topics and steers generation toward benchmark factor models, event studies, accounting regressions, forecast-error analysis, and bias checks. |
 
 ---
 
@@ -387,6 +422,11 @@ project:
 research:
   topic: "..."                     # Research topic (required)
   domains: ["ml", "nlp"]           # Research domains for literature search
+  # Finance/accounting/investment examples:
+  # domains: ["finance", "accounting"]
+  # topic: "Event study of abnormal returns around earnings announcements"
+  # topic: "Accrual quality and analyst forecast error"
+  # topic: "Fama-French factor model for portfolio alpha"
   daily_paper_count: 8             # Target papers per search query
   quality_threshold: 4.0           # Minimum quality score for papers
 
@@ -526,3 +566,4 @@ If you find AutoResearchClaw useful, please cite:
 <p align="center">
   <sub>Built with 🦞 by the AutoResearchClaw team</sub>
 </p>
+/p>

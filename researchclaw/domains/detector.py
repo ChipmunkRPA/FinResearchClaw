@@ -263,6 +263,16 @@ _KEYWORD_RULES: list[tuple[list[str], str]] = [
       "esm"], "biology_protein"),
     (["biology", "bioinformatics", "omics"], "biology_general"),
 
+    # Finance / Accounting / Investment
+    (["accounting", "financial statement", "earnings management",
+      "accrual", "revenue recognition", "audit quality", "10-k",
+      "10-q", "sec filing", "analyst forecast", "forecast error",
+      "asset pricing", "portfolio", "factor model", "fama-french",
+      "capm", "alpha", "sharpe", "event study", "abnormal return",
+      "car", "bhar", "valuation", "bankruptcy risk", "credit risk",
+      "equity research", "investment research"],
+     "finance_accounting_investment"),
+
     # Economics
     (["econometrics", "regression", "instrumental variable",
       "fixed effect", "panel data", "difference-in-difference",
@@ -328,6 +338,7 @@ Available domains:
 - biology_genomics: Genomics (sequencing, variant calling)
 - biology_protein: Protein science (folding, property prediction)
 - economics_empirical: Empirical economics (regression, causal inference)
+- finance_accounting_investment: Finance/accounting/investment research (asset pricing, event studies, statements)
 - mathematics_numerical: Numerical methods (ODE/PDE solvers, convergence)
 - mathematics_optimization: Optimization (convex, evolutionary)
 - security_detection: Security/intrusion detection
