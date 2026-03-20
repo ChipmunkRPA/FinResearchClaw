@@ -70,6 +70,7 @@ image/logo_prompt.md
 run.log
 
 # Misc temp files
+tmp_*.yaml
 .history/
 .serena/
 cli_pause
