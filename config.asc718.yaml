@@ -1,0 +1,39 @@
+project:
+  name: "asc718-option-rsu-exchange"
+  mode: "full-auto"
+
+research:
+  topic: "ASC 718 modification accounting for a public company swapping vested underwater employee options for fully vested RSUs in a value-for-value exchange"
+  domains:
+    - "finance"
+    - "accounting"
+  daily_paper_count: 2
+  quality_threshold: 3.0
+
+runtime:
+  timezone: "America/New_York"
+  max_parallel_tasks: 1
+
+notifications:
+  channel: "console"
+  target: ""
+
+knowledge_base:
+  backend: "markdown"
+  root: "docs/kb"
+
+llm:
+  provider: "openai-compatible"
+  base_url: "https://openai-api.shenmishajing.workers.dev/v1"
+  api_key: "r685RxDQ3lYYWC8nOH5SUDlLZEkutddM"
+  api_key_env: "RESEARCHCLAW_API_KEY"
+  primary_model: "gpt-4o"
+  fallback_models:
+    - "gpt-4.1"
+
+experiment:
+  mode: "sandbox"
+  time_budget_sec: 120
+  max_iterations: 1
+  sandbox:
+    python_path: ".venv-acc-skill/bin/python"

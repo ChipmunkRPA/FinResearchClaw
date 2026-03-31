@@ -1,0 +1,78 @@
+{
+  "prepared_for": "Ray Sang",
+  "prepared_by": "AccountingClaw",
+  "date": "2026-03-30",
+  "subject": "ASC 718: Modification Accounting for the Exchange of Vested Underwater Stock Options for Fully Vested RSUs",
+  "issue": "Determine the appropriate accounting treatment under ASC 718 for a public company performing a 'value-for-value' exchange of vested, underwater employee stock options for fully vested restricted stock units (RSUs).",
+  "facts": [
+    "The reporting entity is a public company (SEC filer) applying U.S. GAAP.",
+    "The original awards are vested stock options with an exercise price exceeding the current fair market value (underwater).",
+    "The replacement awards are RSUs that are fully vested upon issuance.",
+    "The exchange ratio is designed to be commercially 'value-for-value' (e.g., fewer RSUs issued to match the current fair value of the options).",
+    "Both the original and replacement awards are equity-classified."
+  ],
+  "guidance": [
+    {
+      "citation": "ASC 718-20-35-3",
+      "source_type": "Authoritative",
+      "key_point": "Defines a modification as a change in the terms or conditions of a share-based payment award.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 718-20-35-4",
+      "source_type": "Authoritative",
+      "key_point": "Specifies that the cancellation of an award accompanied by the grant of a replacement award shall be accounted for as a modification.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 718-20-35-6",
+      "source_type": "Authoritative",
+      "key_point": "States that for a modification of a vested award, any incremental compensation cost shall be recognized immediately on the modification date.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 718-20-35-2",
+      "source_type": "Authoritative",
+      "key_point": "Requires recognition of incremental fair value if the modification increases the fair value of the award (the 'Type I' modification rule for vested-to-vested exchanges).",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    }
+  ],
+  "analysis": [
+    "The exchange constitutes a modification (cancellation and replacement) under ASC 718-20-35-4.",
+    "Accounting fair value vs. Commercial value: A commercially 'value-for-value' swap may still result in incremental compensation cost. This is because the accounting fair value of the options (calculated using Black-Scholes or a Lattice model including time value) often differs from the intrinsic-value-based ratios used in commercial negotiations.",
+    "Incremental Fair Value Calculation: The entity must compare (1) the fair value of the replacement RSUs on the exchange date to (2) the fair value of the canceled options immediately before the exchange. Any excess is 'incremental compensation cost.'",
+    "Immediate Recognition: Because both the original and replacement awards have no remaining service conditions (fully vested), all incremental cost must be recognized as compensation expense on the modification date per ASC 718-20-35-6.",
+    "No Reversal: ASC 718 does not permit the reversal of previously recognized compensation cost for vested awards that are canceled or expire underwater.",
+    "Classification: As both awards are equity-classified, the accounting impact is primarily a reclassification within stockholders' equity (APIC), plus any incremental expense recognized."
+  ],
+  "conclusion": "The company must account for the swap as a modification. Measure the incremental fair value by comparing the RSU value on the grant date to the option value immediately prior to cancellation. Because the awards are vested, recognize any incremental compensation cost as an immediate expense on the modification date. Do not reverse the original grant-date expense already recognized for the canceled options.",
+  "disclosure_considerations": [
+    "Description of the exchange program and modification terms.",
+    "Method and assumptions used to value both the original options (e.g., volatility, expected term) and the replacement RSUs (FMV).",
+    "Amount of incremental compensation cost recognized in the current period.",
+    "Impact on the weighted-average grant-date fair value disclosures."
+  ],
+  "journal_entries": [
+    {
+      "description": "To recognize incremental compensation cost from the modification (if RSU Fair Value > Canceled Option Fair Value)",
+      "debit": "Stock-Based Compensation Expense",
+      "credit": "Additional Paid-in Capital (APIC)",
+      "amount": "Incremental Fair Value"
+    }
+  ],
+  "assumptions": [
+    "The fair value of the options immediately before the exchange is determined using an appropriate valuation model (e.g., Black-Scholes) considering the 'underwater' status.",
+    "The RSUs are legally and substantively fully vested upon issuance with no future service requirement."
+  ],
+  "open_items": [
+    "Review the specific settlement mechanics (e.g., net settlement for taxes) to ensure they do not trigger liability classification under ASC 718-10-25-18."
+  ],
+  "next_steps": [
+    "Obtain formal valuation of the underwater options immediately prior to the swap to document the incremental cost (or lack thereof).",
+    "Draft the required ASC 718 modification footnote for the upcoming 10-Q filing."
+  ]
+}

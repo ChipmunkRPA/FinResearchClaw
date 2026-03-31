@@ -1,0 +1,63 @@
+{
+  "prepared_for": "Ray Sang",
+  "prepared_by": "AccountingClaw",
+  "date": "2026-03-30",
+  "subject": "ASC 606 Revenue Recognition for a Two-Year Consumption AI Contract with Nonrefundable Upfront Minimum Commitment and Same-Rate Usage Overages",
+  "issue": "This memorandum analyzes the appropriate revenue recognition treatment under ASC 606 for a two-year AI consumption contract. The primary question is how a vendor should account for a nonrefundable minimum dollar commitment that is billed and paid upfront, given that the customer is expected to exceed this minimum through usage-based overages billed at the same contractual rate.",
+  "facts": [
+    "The reporting entity is a public company vendor applying U.S. GAAP. The contract has a two-year term during which the customer receives a continuous, stand-ready right to on-demand AI consumption. At contract inception, the customer pays a nonrefundable minimum dollar amount. If the customer’s actual consumption exceeds this minimum, the excess usage is billed at the same contractual unit rate as the committed portion. Any unused portion of the minimum commitment is forfeited at the end of the term, with no rollover or refund. Collectibility is determined to be probable. This analysis assumes no other material performance obligations, such as implementation or customization, exist in the arrangement."
+  ],
+  "guidance": [
+    {
+      "citation": "ASC 606-10-25-18(e)",
+      "source_type": "Authoritative",
+      "key_point": "Identifies stand-ready obligations as a type of performance obligation satisfied over time.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 606-10-55-18",
+      "source_type": "Authoritative",
+      "key_point": "Discusses the right-to-invoice practical expedient for recognizing revenue.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    }
+  ],
+  "analysis": [
+    "The nature of the vendor’s promise is to provide the customer with continuous access to an AI platform. Under ASC 606-10-25-18(e), this arrangement is most appropriately characterized as a stand-ready performance obligation. The vendor is obligated to remain available to fulfill the customer’s on-demand usage requests at any time throughout the two-year term. Because the customer simultaneously receives and consumes the benefits of the vendor’s readiness, the performance obligation is satisfied over time. This stand-ready view is strengthened by the forfeiture feature, which demonstrates that the customer is paying for the value of availability and platform access rather than merely purchasing a bank of discrete units.",
+    "The contract consideration consists of a fixed component (the nonrefundable minimum) and a variable component (the overage fees). Although the minimum commitment is billed and collected upfront, revenue recognition is driven by the transfer of the service rather than the timing of the invoice. The fixed minimum represents the consideration for the two-year stand-ready service. Under a time-elapsed measure of progress, the vendor should record the upfront payment as a contract liability and recognize it as revenue ratably on a straight-line basis over the 24-month contract term.",
+    "Usage-based overage fees are classified as variable consideration. Even though management may expect the customer to exceed the minimum, the final amount of overage revenue is uncertain until the actual consumption occurs. Consequently, the vendor should generally recognize overage revenue in the period in which the excess usage is delivered. It is important to note that the expectation of excess usage does not recharacterize or accelerate the recognition of the fixed minimum commitment. The two streams of consideration—the ratable fixed portion and the as-incurred variable portion—should run concurrently through the end of the term.",
+    "The 'right-to-invoice' practical expedient (ASC 606-10-55-18) allows an entity to recognize revenue in the amount to which it has a right to invoice if that amount corresponds directly with the value transferred to the customer. While the overage fees are billed at the same rate as the committed usage, the upfront prepaid nature of the minimum commitment prevents this expedient from being the default model for the entire arrangement. The amount billed at inception—the entire nonrefundable minimum—does not correspond to the value transferred to date at the start of the contract. Therefore, the vendor must maintain the deferral and ratable recognition of the fixed portion over the two-year period of stand-ready performance.",
+    "A relevant illustration of consumption-based accounting is found in the revenue disclosures of Snowflake Inc. (SNOW) in its Form 10-K for the fiscal year ended January 31, 2024. Snowflake typically enters into 'consumption capacity arrangements' where customers commit to a specified amount of consumption at predetermined prices, often billed annually in advance. Snowflake recognizes revenue as consumption occurs because its performance obligation is tied to the use of compute and storage resources. While Snowflake’s model provides a useful analogy for consumption-based variable consideration, our specific fact pattern contains a key distinction: the nonrefundable upfront dollar commitment with forfeiture. In our scenario, the forfeiture of the unused minimum further reinforces that the customer is paying for the stand-ready access service over time. Consequently, whereas Snowflake recognizes its capacity arrangements as usage occurs, our fact pattern more clearly supports a ratable straight-line recognition of the fixed minimum over the stand-ready term, alongside as-incurred recognition for overages."
+  ],
+  "conclusion": "The vendor should record the upfront nonrefundable minimum commitment as a contract liability and recognize it as revenue on a straight-line basis over the two-year contract term. Any revenue from usage exceeding the minimum threshold should be recognized as variable consideration in the period the consumption occurs. The company should establish a formal policy to treat such arrangements as stand-ready services, ensuring that the timing of cash collection or the expectation of excess usage does not prematurely accelerate the recognition of fixed commitments.",
+  "disclosure_considerations": [
+    "As a public company, the vendor must disclose the nature of its stand-ready AI services and the significant judgments applied in determining the measure of progress and the variable consideration constraint. The company should also ensure it has robust systems to track consumption in real-time. Additionally, the specific settlement and tax withholding mechanics should be reviewed to confirm that net-settlement features do not inadvertently trigger liability classification under ASC 718, if equity compensation is involved, or similar classification issues under relevant ASC standards."
+  ],
+  "journal_entries": [
+    {
+      "description": "To record the receipt of the upfront nonrefundable minimum commitment",
+      "debit": "Cash / Accounts Receivable",
+      "credit": "Contract Liability",
+      "amount": "Total Minimum Commitment"
+    },
+    {
+      "description": "To recognize monthly ratable revenue from the fixed minimum commitment",
+      "debit": "Contract Liability",
+      "credit": "Revenue",
+      "amount": "Total Minimum / 24 Months"
+    },
+    {
+      "description": "To recognize revenue from consumption in excess of the minimum threshold",
+      "debit": "Accounts Receivable / Unbilled Receivable",
+      "credit": "Revenue",
+      "amount": "Actual Overage Value"
+    }
+  ],
+  "assumptions": [
+    "The analysis assumes that there are no separate material rights, such as renewal options at a significant discount, and that the vendor has no further performance obligations beyond providing platform access. It also assumes that the contract term is clearly defined as two years without early termination rights that would substantively change the nonrefundable nature of the upfront fee."
+  ],
+  "next_steps": [
+    "The vendor should formalize its accounting policy for consumption-based contracts to ensure consistent application across the portfolio. Additionally, the company should implement systems to track consumption in real-time to accurately trigger overage recognition and support required ASC 606 disclosures in periodic SEC filings."
+  ]
+}

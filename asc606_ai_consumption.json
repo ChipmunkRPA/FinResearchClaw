@@ -1,0 +1,69 @@
+{
+  "prepared_for": "Ray Sang",
+  "prepared_by": "AccountingClaw",
+  "date": "2026-03-30",
+  "subject": "ASC 606 Revenue Recognition for Consumption-Based AI Contracts with Minimum Commitments",
+  "issue": "This memorandum addresses the appropriate revenue recognition treatment under ASC 606 for a two-year AI consumption contract characterized by a nonrefundable upfront minimum commitment and usage-based overage fees billed at the same contractual rate.",
+  "facts": [
+    "The reporting entity is a vendor applying U.S. GAAP in a public-company context. The arrangement is a two-year contract under which the customer pays a nonrefundable minimum dollar commitment upfront. In exchange, the vendor provides a stand-ready right to access on-demand AI services throughout the term. Any actual usage exceeding the minimum threshold is billed at the same contractual unit rate as the committed portion. If the customer's actual usage remains below the minimum commitment at the end of the term, the unused amount is forfeited with no rollover or refund. Collectibility is determined to be probable at contract inception."
+  ],
+  "guidance": [
+    {
+      "citation": "ASC 606-10-25-18(e)",
+      "source_type": "Authoritative",
+      "key_point": "Identifies stand-ready obligations as a type of performance obligation satisfied over time.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 606-10-55-18",
+      "source_type": "Authoritative",
+      "key_point": "Discusses the right-to-invoice practical expedient for recognizing revenue.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    }
+  ],
+  "analysis": [
+    "The nature of the promise in this arrangement is to provide the customer with continuous access to an AI platform. This constitutes a stand-ready performance obligation because the vendor is obligated to remain available to fulfill the customer's on-demand usage requests throughout the entire two-year term. The customer simultaneously receives and consumes the benefits of the vendor's performance as the access is provided, which supports the conclusion that the performance obligation is satisfied over time.",
+    "The upfront nonrefundable minimum commitment represents fixed consideration for the stand-ready service. Although the cash is collected at inception, the revenue must be deferred as a contract liability and recognized as the vendor satisfies its performance obligation. Under the facts provided, a time-elapsed measure of progress, specifically a straight-line recognition over the two-year contract term, most faithfully depicts the transfer of the stand-ready service to the customer.",
+    "Usage-based overages are classified as variable consideration. While the company may expect the customer to exceed the minimum, the final amount is uncertain until usage occurs. Accordingly, revenue from overages should generally be recognized in the period in which the excess consumption happens. The fact that overages are billed at the same rate as the committed usage supports the consistent application of value across the term but does not alter the timing of the minimum's ratable recognition.",
+    "The forfeiture of unused committed funds confirms that the minimum commitment acts as a floor for the access service rather than a bank of discrete units. This strengthens the over-time recognition model for the fixed portion. Treating the minimum commitment purely as a deposit consumed only by usage would fail to reflect the vendor's ongoing obligation to maintain platform availability and readiness regardless of current usage levels.",
+    "A relevant real-world example of this treatment is found in the revenue recognition policy of Snowflake Inc. (SNOW). Snowflake offers consumption-based platform access where customers often purchase capacity credits through nonrefundable minimum commitments. In their SEC disclosures, Snowflake notes that for these multi-year capacity arrangements, they generally recognize revenue as the platform usage occurs. However, they also maintain a significant deferred revenue balance representing the nonrefundable committed amounts. This mirrors the industry standard for balancing the stand-ready nature of the platform with the variable consumption of its features."
+  ],
+  "conclusion": "The vendor should record the upfront payment as a contract liability and recognize it as revenue on a straight-line basis over the two-year contract term. Revenue from usage exceeding the minimum threshold should be recognized as variable consideration in the period the consumption occurs. This approach ensures that revenue recognition aligns with the continuous transfer of the stand-ready access service and the resolution of usage-based uncertainty.",
+  "disclosure_considerations": [
+    "A public company must disclose the nature of its stand-ready AI services and the over-time recognition pattern used for fixed commitments. The financial statements should also detail the significant judgments applied to the variable consideration constraint and the use of time-elapsed measures of progress. Furthermore, the contract liability associated with the upfront prepayment must be presented and reconciled in the revenue footnotes."
+  ],
+  "journal_entries": [
+    {
+      "description": "To record the receipt of the upfront nonrefundable minimum commitment",
+      "debit": "Cash / Accounts Receivable",
+      "credit": "Contract Liability",
+      "amount": "Total Minimum Commitment"
+    },
+    {
+      "description": "To recognize monthly ratable revenue from the fixed minimum commitment",
+      "debit": "Contract Liability",
+      "credit": "Revenue",
+      "amount": "Total Minimum / 24 Months"
+    },
+    {
+      "description": "To recognize revenue from consumption in excess of the minimum threshold",
+      "debit": "Accounts Receivable / Unbilled Receivable",
+      "credit": "Revenue",
+      "amount": "Actual Overage Value"
+    }
+  ],
+  "assumptions": [
+    "The analysis assumes that there are no separate material rights, such as renewal options at a significant discount, and that the vendor has no further performance obligations beyond providing platform access. It also assumes that the contract term is clearly defined as two years without early termination rights that would substantively change the nonrefundable nature of the upfront fee."
+  ],
+  "next_steps": [
+    "The vendor should formalize its accounting policy for consumption-based contracts to ensure consistent application across the portfolio. Additionally, the company should implement systems to track consumption in real-time to accurately trigger overage recognition and support required ASC 606 disclosures in periodic SEC filings."
+  ],
+  "qa": [
+    {
+      "question": "Does the expectation that the customer will exceed the minimum change the ratable recognition of the fixed portion?",
+      "answer": "Generally, no. The fixed minimum is consideration for the stand-ready obligation over the term. While overages are recognized as incurred, the fixed portion remains tied to the underlying time-based availability service."
+    }
+  ]
+}

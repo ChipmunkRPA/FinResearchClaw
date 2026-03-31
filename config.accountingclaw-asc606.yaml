@@ -1,0 +1,64 @@
+project:
+  name: "asc606-ai-consumption-memo"
+  mode: "full-auto"
+
+research:
+  topic: "ASC 606 revenue recognition for a vendor-side AI consumption contract with a nonrefundable annual minimum commitment billed upfront and contractual usage-based overage fees expected to exceed the minimum"
+  domains:
+    - "finance"
+    - "accounting"
+  daily_paper_count: 3
+  quality_threshold: 3.0
+
+runtime:
+  timezone: "America/New_York"
+  max_parallel_tasks: 1
+  approval_timeout_hours: 1
+  retry_limit: 1
+
+notifications:
+  channel: "console"
+  target: ""
+  on_stage_start: false
+  on_stage_fail: true
+  on_gate_required: false
+
+knowledge_base:
+  backend: "markdown"
+  root: "docs/kb"
+
+openclaw_bridge:
+  use_cron: false
+  use_message: false
+  use_memory: false
+  use_sessions_spawn: false
+  use_web_fetch: false
+  use_browser: false
+
+llm:
+  provider: "openai-compatible"
+  base_url: "https://openai-api.shenmishajing.workers.dev/v1"
+  api_key: "r685RxDQ3lYYWC8nOH5SUDlLZEkutddM"
+  api_key_env: "RESEARCHCLAW_API_KEY"
+  primary_model: "gpt-4o"
+  fallback_models:
+    - "gpt-4.1"
+
+security:
+  hitl_required_stages: []
+  allow_publish_without_approval: true
+  redact_sensitive_logs: true
+
+experiment:
+  mode: "sandbox"
+  time_budget_sec: 60
+  max_iterations: 1
+  metric_key: "primary_metric"
+  metric_direction: "minimize"
+  sandbox:
+    python_path: ".venv-acc-skill/bin/python"
+    gpu_required: false
+    max_memory_mb: 2048
+
+prompts:
+  custom_file: ""

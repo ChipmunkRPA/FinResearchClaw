@@ -1,0 +1,69 @@
+{
+  "prepared_for": "Ray Sang",
+  "prepared_by": "AccountingClaw",
+  "date": "2026-03-30",
+  "subject": "ASC 718 Accounting Treatment for the Exchange of Vested Underwater Stock Options for Fully Vested RSUs",
+  "issue": "How a public company applying US GAAP should account under ASC 718 for a 'value-for-value' exchange where vested underwater employee stock options are swapped for fully vested Restricted Stock Units (RSUs).",
+  "facts": [
+    "The entity is a public company (SEC filer) applying US GAAP.",
+    "The original awards are vested underwater stock options.",
+    "The replacement awards are fully vested RSUs issued at the exchange date.",
+    "The exchange is structured as a 'value-for-value' swap, meaning the number of RSUs issued is intended to match the current fair value of the canceled underwater options.",
+    "Both the original options and the replacement RSUs are equity-classified."
+  ],
+  "guidance": [
+    {
+      "citation": "ASC 718-20-35-3",
+      "source_type": "Authoritative",
+      "key_point": "Defines a modification as a change in the terms or conditions of a share-based payment award.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 718-20-35-2",
+      "source_type": "Authoritative",
+      "key_point": "An entity shall recognize the effects of a modification that increases the fair value (or other measure) of an award.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    },
+    {
+      "citation": "ASC 718-20-35-4",
+      "source_type": "Authoritative",
+      "key_point": "The cancellation of an award accompanied by the grant of a replacement award is treated as a modification.",
+      "url": "https://fasb.org",
+      "accessed_on": "2026-03-30"
+    }
+  ],
+  "analysis": [
+    "The exchange constitutes a modification of the original share-based payment arrangement under ASC 718.",
+    "The entity must measure the fair value of the modified award (fully vested RSUs) as of the modification date.",
+    "The entity must measure the fair value of the original award (underwater options) immediately before the modification.",
+    "Incremental compensation cost is the excess of the fair value of the modified award over the fair value of the original award at the exchange date.",
+    "In a value-for-value swap, the incremental fair value is often zero or minimal. If the fair value of the RSUs is less than or equal to the fair value of the options, no incremental cost is recognized.",
+    "Original grant-date fair value recognized for the vested options is not reduced or reversed.",
+    "Because the replacement RSUs are fully vested, any incremental compensation cost must be recognized immediately on the modification date."
+  ],
+  "conclusion": "The company should treat the exchange as a modification. Measure the fair value immediately before and after the swap. Recognize any incremental fair value as compensation expense immediately. Do not reverse original compensation expense for the vested options.",
+  "disclosure_considerations": [
+    "Description of the modification terms.",
+    "Number of employees affected and awards modified.",
+    "Valuation techniques and significant assumptions used (e.g., Black-Scholes for options, FMV for RSUs).",
+    "Amount of incremental compensation cost recognized."
+  ],
+  "journal_entries": [
+    {
+      "description": "To recognize incremental compensation cost from option-for-RSU exchange (if incremental FV > 0)",
+      "debit": "Stock-Based Compensation Expense",
+      "credit": "Additional Paid-in Capital (APIC)",
+      "amount": "Incremental Fair Value"
+    }
+  ],
+  "assumptions": [
+    "The company correctly determines the fair value of the underwater options immediately before cancellation using a supportable option-pricing model.",
+    "The RSUs have no future service conditions and are legally fully vested upon issuance."
+  ],
+  "next_steps": [
+    "Confirm the Black-Scholes or lattice model inputs used for the pre-modification option valuation.",
+    "Ensure the modification disclosure is included in the upcoming 10-Q or 10-K filing."
+  ]
+}
